@@ -20,17 +20,19 @@ from django.urls import path
 from posts.views import index
 from profiles.views import profile
 from accounts.views import accounts
-from posts.views import post_list, post_deteal, post_create
+from posts.views import post_list, post_deteal, post_create, PostList, PostDeatale, PostCreateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('index/', index),
     path('profile/', profile),
     path('accounts/', accounts),
-    path('posts/', post_list),
-    path('posts/create/', post_create),
-    path('posts/<int:post_id>/', post_deteal),
-    
+    #path('posts/', post_list),
+    path('posts/', PostList.as_view(), name='post_list'),
+    #path('posts/create/', post_create),
+    #path('posts/<int:post_id>/', post_deteal),
+    path('posts/<int:pk>/', PostDeatale.as_view()),
+    path('posts/create/', PostCreateView.as_view())
     
     
 ]
